@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login and Signup</title>
+    <h1>Avisekh my love</h1>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f4f4f4;
+      }
+      .container {
+        width: 300px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      form {
+        display: none;
+      }
+      .active {
+        display: block;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #28a745;
+        border: none;
+        color: white;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .toggle {
+        text-align: center;
+        margin-top: 10px;
+      }
+      .toggle a {
+        cursor: pointer;
+        color: #007bff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 id="form-title">Login</h2>
+
+      <!-- Login Form -->
+      <form
+        id="login-form"
+        class="active"
+        action="http://localhost:3000/login"
+        method="POST"
+      >
+        <input type="text" name="username" placeholder="Username" required />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <input type="submit" value="Login" />
+      </form>
+
+      <!-- Signup Form -->
+      <form
+        id="signup-form"
+        action="http://localhost:3000/signup"
+        method="POST"
+      >
+        <input type="text" name="username" placeholder="Username" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <input type="submit" value="Sign Up" />
+      </form>
+
+      <!-- Toggle between Login and Signup -->
+      <div class="toggle">
+        <span id="toggle-text">Don't have an account?</span>
+        <a id="toggle-link">Sign up here</a>
+      </div>
+    </div>
+
+    <script>
+      const loginForm = document.getElementById("login-form");
+      const signupForm = document.getElementById("signup-form");
+      const formTitle = document.getElementById("form-title");
+      const toggleText = document.getElementById("toggle-text");
+      const toggleLink = document.getElementById("toggle-link");
+
+      toggleLink.addEventListener("click", function () {
+        if (loginForm.classList.contains("active")) {
+          loginForm.classList.remove("active");
+          signupForm.classList.add("active");
+          formTitle.innerText = "Sign Up";
+          toggleText.innerText = "Already have an account?";
+          toggleLink.innerText = "Login here";
+        } else {
+          signupForm.classList.remove("active");
+          loginForm.classList.add("active");
+          formTitle.innerText = "Login";
+          toggleText.innerText = "Don't have an account?";
+          toggleLink.innerText = "Sign up here";
+        }
+      });
+    </script>
+  </body>
+</html>
